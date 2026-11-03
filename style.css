@@ -1,0 +1,373 @@
+/* ===== Variables ===== */
+:root {
+  --fondo: #0f1023;
+  --tarjeta: #181a33;
+  --borde: #2a2d52;
+  --texto: #e8e8f0;
+  --suave: #9a9cb8;
+  --acento-1: #ff6b9d;
+  --acento-2: #7c5cff;
+  --acento-3: #2ee6c5;
+  --degradado: linear-gradient(135deg, var(--acento-1), var(--acento-2));
+  --fondo-nav: rgba(15, 16, 35, 0.7);
+}
+
+/* Modo claro: solo cambiamos las variables, el resto del CSS se adapta solo */
+:root[data-tema="claro"] {
+  --fondo: #f6f5fb;
+  --tarjeta: #ffffff;
+  --borde: #dcdaf0;
+  --texto: #1b1c33;
+  --suave: #5d5f7a;
+  --acento-3: #0f9e86;
+  --fondo-nav: rgba(246, 245, 251, 0.7);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ===== Barra de navegación ===== */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 24px;
+  background: var(--fondo-nav);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--borde);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+nav a {
+  color: var(--suave);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+nav a:hover { color: var(--texto); }
+
+nav ul { align-items: center; }
+
+.boton-tema {
+  background: none;
+  border: 1px solid var(--borde);
+  border-radius: 999px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+nav .logo {
+  font-weight: 700;
+  background: var(--degradado);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Que los títulos no queden tapados por la barra al saltar */
+section { scroll-margin-top: 80px; }
+
+/* ===== Cabecera con burbujas animadas ===== */
+header {
+  position: relative;
+  isolation: isolate;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 120px 20px 80px;
+}
+
+header::before,
+header::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.5;
+  z-index: -1;
+  animation: flotar 8s ease-in-out infinite alternate;
+}
+
+header::before { background: var(--acento-2); top: 40px; left: -60px; }
+header::after  { background: var(--acento-1); top: 140px; right: -40px; animation-delay: -4s; }
+
+@keyframes flotar {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(40px, 30px) scale(1.15); }
+}
+
+.saludo {
+  color: var(--acento-3);
+  font-weight: 600;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.8rem, 8vw, 5rem);
+  line-height: 1.1;
+  margin: 10px 0 20px;
+  background: var(--degradado);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitulo {
+  font-size: 1.2rem;
+  color: var(--suave);
+  max-width: 520px;
+  margin: 0 0 30px;
+}
+
+/* ===== Botones ===== */
+.boton {
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 999px;
+  background: var(--degradado);
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.boton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(124, 92, 255, 0.4);
+}
+
+.boton.secundario {
+  background: transparent;
+  border: 2px solid var(--borde);
+}
+
+.boton.secundario:hover {
+  border-color: var(--acento-3);
+  box-shadow: none;
+}
+
+/* ===== Tarjetas ===== */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+section {
+  background: var(--tarjeta);
+  border: 1px solid var(--borde);
+  border-radius: 20px;
+  padding: 30px;
+  margin-bottom: 24px;
+  transition: transform 0.5s, border-color 0.3s, opacity 0.6s;
+}
+
+/* JavaScript le pone esta clase a cada sección y se la saca cuando aparece en pantalla */
+section.oculta {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+section:hover {
+  transform: translateY(-4px);
+  border-color: var(--acento-2);
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1.6rem;
+}
+
+h2::before {
+  content: "// ";
+  color: var(--acento-3);
+}
+
+/* ===== Habilidades como "chips" ===== */
+.chips {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chips li {
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(124, 92, 255, 0.15);
+  border: 1px solid var(--acento-2);
+  font-size: 0.95rem;
+}
+
+.chips li.aprendiendo {
+  background: rgba(46, 230, 197, 0.1);
+  border-color: var(--acento-3);
+}
+
+.chips li.aprendiendo::before { content: "🌱 "; }
+
+.nota {
+  color: var(--suave);
+  font-size: 0.9rem;
+  margin-bottom: 0;
+}
+
+/* ===== Proyectos en grilla ===== */
+.proyectos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.proyecto {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 14px;
+  background: var(--fondo);
+  border: 1px solid var(--borde);
+  transition: border-color 0.2s;
+}
+
+.proyecto:hover { border-color: var(--acento-3); }
+
+.proyecto h3 { margin: 0 0 8px; }
+
+/* Etiqueta para proyectos que siguen en curso */
+.estado {
+  align-self: flex-start;
+  margin-bottom: 10px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--acento-1);
+  border: 1px solid var(--acento-1);
+}
+
+.proyecto p {
+  color: var(--suave);
+  font-size: 0.95rem;
+  margin: 0 0 12px;
+}
+
+.tags {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tags li {
+  font-size: 0.8rem;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: rgba(46, 230, 197, 0.1);
+  color: var(--acento-3);
+}
+
+/* margin-top: auto empuja el link al fondo de la tarjeta */
+.proyecto a {
+  margin-top: auto;
+  color: var(--acento-1);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ===== Línea de tiempo ===== */
+.linea-tiempo {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 28px;
+  position: relative;
+}
+
+/* La línea vertical */
+.linea-tiempo::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--degradado);
+}
+
+.linea-tiempo li {
+  position: relative;
+  padding-bottom: 24px;
+}
+
+.linea-tiempo li:last-child { padding-bottom: 0; }
+
+/* El puntito de cada etapa */
+.linea-tiempo li::before {
+  content: "";
+  position: absolute;
+  left: -28px;
+  top: 6px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--tarjeta);
+  border: 3px solid var(--acento-1);
+}
+
+.fecha {
+  color: var(--acento-3);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.linea-tiempo h3 { margin: 2px 0 4px; }
+
+.linea-tiempo p {
+  color: var(--suave);
+  margin: 0;
+}
+
+.links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ===== Pie ===== */
+footer {
+  text-align: center;
+  color: var(--suave);
+  padding: 30px 20px;
+  font-size: 0.9rem;
+}
+
+/* ===== Celulares ===== */
+@media (max-width: 600px) {
+  header { padding: 80px 20px 50px; }
+  section { padding: 22px; }
+  nav { padding: 12px 16px; flex-wrap: wrap; gap: 8px; }
+  nav ul { flex-wrap: wrap; gap: 6px 14px; font-size: 0.9rem; }
+}

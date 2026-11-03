@@ -2,48 +2,129 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Juan - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juan Granero · Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <nav>
+    <a class="logo" href="#">JG</a>
+    <ul>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#formacion">Formación</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+      <li><button id="boton-tema" class="boton-tema" aria-label="Cambiar entre modo claro y oscuro">☀️</button></li>
+    </ul>
+  </nav>
+
   <header>
+    <p class="saludo">👋 Hola, soy</p>
     <h1>Juan Granero</h1>
-    <p>Estudiante del Tecnólogo en Informática (UdelaR) en busca de mi primera experiencia en el área.</p>
+    <p class="subtitulo">Desarrollador de software. Programo en Java, C y SQL, y construyo interfaces web con HTML, CSS y JavaScript.</p>
+    <a class="boton" href="#contacto">Hablemos</a>
   </header>
 
   <main>
-    <section>
+    <section id="sobre-mi">
       <h2>Sobre mí</h2>
       <p>
         Soy estudiante del Tecnólogo en Informática en la Universidad de la República, en Montevideo.
-        Me interesa el desarrollo de software y estoy aprendiendo a construir aplicaciones web completas,
-        del backend a la interfaz. Uso este espacio para mostrar mis proyectos y lo que voy aprendiendo
-        en el camino. Actualmente busco pasantías o mi primer trabajo en el área.
+        Tengo base en programación orientada a objetos, estructuras de datos y bases de datos relacionales,
+        y me interesa el desarrollo de aplicaciones completas, del backend a la interfaz.
+        Me gusta entender cómo funcionan las cosas por dentro y escribir código claro y mantenible.
+        Estoy disponible para pasantías y puestos junior.
       </p>
     </section>
 
     <section>
-      <h2>Lo que sé</h2>
-      <ul>
-        <li>Java y programación orientada a objetos</li>
-        <li>Programación en C</li>
-        <li>Bases de datos relacionales y SQL</li>
+      <h2>Tecnologías</h2>
+      <ul class="chips">
+        <li>Java</li>
+        <li>POO</li>
+        <li>C</li>
+        <li>SQL</li>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
         <li>Git y GitHub</li>
-        <li>HTML (en aprendizaje)</li>
-        <li>Docker (en aprendizaje)</li>
+        <li class="aprendiendo">Docker</li>
       </ul>
+      <p class="nota">🌱 En curso actualmente.</p>
     </section>
 
-    <section>
+    <section id="proyectos">
+      <h2>Proyectos</h2>
+      <div class="proyectos">
+        <!-- Repo privado por ahora. Cuando sea público, agregar:
+             <a href="https://github.com/Patrick33uru/Pap2026">Ver código →</a> -->
+        <article class="proyecto">
+          <span class="estado">En desarrollo</span>
+          <h3>Sistema de gestión para una clínica</h3>
+          <p>Proyecto en equipo: sistema para una clínica con aplicación web y aplicación de escritorio, backend en Java sobre Apache Tomcat y entorno contenerizado con Docker.</p>
+          <ul class="tags">
+            <li>Java</li>
+            <li>Tomcat</li>
+            <li>Docker</li>
+          </ul>
+        </article>
+
+        <!-- Repo privado por ahora. Cuando sea público, agregar:
+             <a href="https://github.com/Vallejose/LibreriaPAv">Ver código →</a> -->
+        <article class="proyecto">
+          <h3>Sistema para una librería</h3>
+          <p>Proyecto en equipo del curso de Programación Avanzada: aplicación en Java diseñada con programación orientada a objetos (encapsulamiento, herencia y polimorfismo).</p>
+          <ul class="tags">
+            <li>Java</li>
+            <li>POO</li>
+          </ul>
+        </article>
+
+        <article class="proyecto">
+          <h3>Portfolio personal</h3>
+          <p>Sitio responsive sin frameworks: modo claro/oscuro con preferencia guardada, animaciones al hacer scroll con IntersectionObserver y respeto por las preferencias de accesibilidad.</p>
+          <ul class="tags">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+          </ul>
+          <a href="https://github.com/juangranero2003-design">Ver código →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="formacion">
+      <h2>Formación</h2>
+      <ol class="linea-tiempo">
+        <li>
+          <span class="fecha">20XX – hoy</span>
+          <h3>Tecnólogo en Informática</h3>
+          <p>Universidad de la República, Montevideo. Programación, bases de datos y sistemas operativos.</p>
+        </li>
+        <li>
+          <span class="fecha">2026</span>
+          <h3>Desarrollo web (autodidacta)</h3>
+          <p>HTML semántico, CSS moderno (Grid, Flexbox, diseño responsive) y JavaScript.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section id="contacto">
       <h2>Contacto</h2>
-      <ul>
-        <li><a href="https://github.com/juangranero2003-design">Mi GitHub</a></li>
-        <li><a href="mailto:tumail@ejemplo.com">Mi mail</a></li>
-      </ul>
+      <p>¿Tenés una pasantía, un proyecto o una idea? Escribime.</p>
+      <div class="links">
+        <a class="boton" href="mailto:tumail@ejemplo.com">Mandame un mail</a>
+        <a class="boton secundario" href="https://github.com/juangranero2003-design">GitHub</a>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>Hecho por Juan Granero · 2026</p>
+    <p>© 2026 Juan Granero</p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
